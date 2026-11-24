@@ -1,0 +1,280 @@
+{% extends "base.html" %}
+
+{% block title %}Evaluation Metrics | Skin Disease Prediction{% endblock %}
+
+{% block content %}
+<div class="container main-content-wrapper">
+    <!-- Page Header -->
+    <section class="page-header-section">
+        <div class="hero-badge">
+            <span class="status-dot"></span>
+            <span>Evaluation Framework</span>
+        </div>
+        <h1 class="page-title">Model Evaluation & Clinical Performance Metrics</h1>
+        <p class="page-subtitle">
+            A comprehensive guide to clinical diagnostic evaluation metrics, why overall accuracy is misleading 
+            on imbalanced datasets, and how the test pipeline measures model reliability.
+        </p>
+    </section>
+
+    <!-- Why Raw Accuracy is Misleading Box -->
+    <div class="card warning-callout-card">
+        <div class="card-header">
+            <div class="card-header-icon icon-danger">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+            </div>
+            <div>
+                <h2 class="card-title text-danger">The "Accuracy Paradox" in Medical Imaging</h2>
+                <p class="card-subtitle">Why raw accuracy alone is insufficient for project evaluation</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <p>
+                In the benchmark HAM10000 dataset, Melanocytic Nevi (<code>nv</code>) represents <strong>67%</strong> of all samples. 
+                Consider a trivial, completely un-trained model that simply predicts <em>"Melanocytic Nevi"</em> for every single image:
+            </p>
+            <div class="paradox-example-grid">
+                <div class="paradox-item">
+                    <span class="paradox-stat text-success">67.0%</span>
+                    <span class="paradox-label">Apparent "High" Accuracy</span>
+                </div>
+                <div class="paradox-item">
+                    <span class="paradox-stat text-danger">0.0%</span>
+                    <span class="paradox-label">Melanoma Sensitivity (Fatal)</span>
+                </div>
+                <div class="paradox-item">
+                    <span class="paradox-stat text-danger">0.0%</span>
+                    <span class="paradox-label">Basal Cell Carcinoma Recall</span>
+                </div>
+            </div>
+            <p class="paradox-conclusion">
+                Such a model would pass a superficial accuracy threshold while missing <strong>100%</strong> of life-threatening malignancies. 
+                Consequently, medical AI projects are evaluated primarily on <strong>Macro Sensitivity (Recall)</strong>, <strong>Specificity</strong>, 
+                and <strong>Confusion Matrices</strong> rather than accuracy alone.
+            </p>
+        </div>
+    </div>
+
+    <!-- Metric Definitions Grid -->
+    <div class="metrics-card-grid">
+        {% for metric in framework.metrics %}
+        <div class="card metric-card">
+            <div class="metric-header">
+                <h3>{{ metric.name }}</h3>
+                <span class="target-badge">Goal: {{ metric.target_goal }}</span>
+            </div>
+            <div class="metric-formula">
+                <code>{{ metric.formula }}</code>
+            </div>
+            <div class="metric-desc">
+                <p><strong>Clinical Role:</strong> {{ metric.clinical_importance }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Active Evaluation Results Section -->
+    {% if metrics %}
+    <div class="card eval-results-card" style="margin-bottom: 28px;">
+        <div class="card-header">
+            <div class="card-header-icon icon-success">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+            </div>
+            <div>
+                <h2 class="card-title">Empirical Test-Set Evaluation Results</h2>
+                <p class="card-subtitle">Evaluated on genuine held-out test dermoscopic images &bull; Timestamp: {{ metrics.evaluation_timestamp }}</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <!-- KPI Summary Grid -->
+            <div class="paradox-example-grid" style="margin-bottom: 24px;">
+                <div class="paradox-item">
+                    <span class="paradox-stat text-success">{{ (metrics.overall_accuracy * 100) | round(1) }}%</span>
+                    <span class="paradox-label">Overall Test Accuracy</span>
+                </div>
+                <div class="paradox-item">
+                    <span class="paradox-stat text-primary">{{ metrics.macro_avg.f1_score | round(4) }}</span>
+                    <span class="paradox-label">Macro Average F1-Score</span>
+                </div>
+                <div class="paradox-item">
+                    <span class="paradox-stat text-primary">{{ metrics.weighted_avg.f1_score | round(4) }}</span>
+                    <span class="paradox-label">Weighted Average F1-Score</span>
+                </div>
+                <div class="paradox-item">
+                    <span class="paradox-stat">{{ metrics.total_test_images }}</span>
+                    <span class="paradox-label">Held-out Test Images</span>
+                </div>
+            </div>
+
+            <!-- Visual Charts Grid -->
+            <div class="charts-comparison-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px; margin-bottom: 24px;">
+                <div class="chart-box" style="background: var(--bg-surface); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color); text-align: center;">
+                    <h4 style="margin-bottom: 12px;">Confusion Matrix Heatmap</h4>
+                    <a href="/reports/confusion_matrix.png" target="_blank" title="Click to view full size">
+                        <img src="/reports/confusion_matrix.png" alt="Confusion Matrix" style="max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    </a>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">Rows: Ground Truth &bull; Columns: Predicted Class</p>
+                </div>
+                <div class="chart-box" style="background: var(--bg-surface); padding: 16px; border-radius: 8px; border: 1px solid var(--border-color); text-align: center;">
+                    <h4 style="margin-bottom: 12px;">Per-Class Diagnostic Performance</h4>
+                    <a href="/reports/per_class_metrics.png" target="_blank" title="Click to view full size">
+                        <img src="/reports/per_class_metrics.png" alt="Per-Class Performance" style="max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                    </a>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">Precision, Recall / Sensitivity, and F1 across 7 classes</p>
+                </div>
+            </div>
+
+            <!-- Per-Class Metrics Table -->
+            <div class="reports-table-wrapper" style="margin-bottom: 24px;">
+                <h4>Per-Class Clinical Diagnostic Metrics:</h4>
+                <div class="table-responsive">
+                    <table class="dataset-table">
+                        <thead>
+                            <tr>
+                                <th>Class Code</th>
+                                <th>Clinical Diagnosis</th>
+                                <th>Severity</th>
+                                <th>Precision</th>
+                                <th>Sensitivity (Recall)</th>
+                                <th>Specificity</th>
+                                <th>F1-Score</th>
+                                <th>Support</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for c_code, m in metrics.per_class.items() %}
+                            <tr>
+                                <td><code>{{ c_code }}</code></td>
+                                <td>{{ m.name }}</td>
+                                <td><span class="status-pill status-neutral" style="font-size: 0.75rem;">{{ m.type }}</span></td>
+                                <td>{{ (m.precision * 100) | round(1) }}%</td>
+                                <td><strong>{{ (m.recall * 100) | round(1) }}%</strong></td>
+                                <td>{{ (m.specificity * 100) | round(1) }}%</td>
+                                <td>{{ m.f1_score | round(4) }}</td>
+                                <td>{{ m.support }}</td>
+                            </tr>
+                            {% endfor %}
+                            <tr style="font-weight: bold; background: rgba(0,0,0,0.03);">
+                                <td colspan="3">Macro Average</td>
+                                <td>{{ (metrics.macro_avg.precision * 100) | round(1) }}%</td>
+                                <td>{{ (metrics.macro_avg.recall * 100) | round(1) }}%</td>
+                                <td>—</td>
+                                <td>{{ metrics.macro_avg.f1_score | round(4) }}</td>
+                                <td>{{ metrics.macro_avg.support }}</td>
+                            </tr>
+                            <tr style="font-weight: bold; background: rgba(0,0,0,0.03);">
+                                <td colspan="3">Weighted Average</td>
+                                <td>{{ (metrics.weighted_avg.precision * 100) | round(1) }}%</td>
+                                <td>{{ (metrics.weighted_avg.recall * 100) | round(1) }}%</td>
+                                <td>—</td>
+                                <td>{{ metrics.weighted_avg.f1_score | round(4) }}</td>
+                                <td>{{ metrics.weighted_avg.support }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Downloadable Artifacts -->
+            <div style="background: rgba(37, 99, 235, 0.05); border: 1px solid rgba(37, 99, 235, 0.2); border-radius: 8px; padding: 16px; margin-bottom: 20px;">
+                <h4 style="margin-bottom: 8px; color: #2563eb;">Exported Evaluation Artifacts:</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                    <a href="/reports/classification_report.csv" class="btn btn-outline" download style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; font-size: 0.85rem;">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        classification_report.csv
+                    </a>
+                    <a href="/reports/evaluation_summary.txt" target="_blank" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; font-size: 0.85rem;">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        evaluation_summary.txt
+                    </a>
+                    <a href="/reports/evaluation_metrics.json" target="_blank" class="btn btn-outline" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; font-size: 0.85rem;">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                        evaluation_metrics.json
+                    </a>
+                </div>
+            </div>
+
+            <!-- Academic Prototype Notice -->
+            <div style="background: rgba(245, 158, 11, 0.08); border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 4px;">
+                <p style="margin: 0; font-size: 0.88rem; color: #1e293b;">
+                    <strong>Academic Research Prototype Notice:</strong> In adherence to academic integrity guidelines for B.Tech Minor Project-I, these empirical results reflect test evaluation on a held-out dataset subset. This software is NOT a certified medical diagnostic device and must not replace professional clinical evaluation or histopathological biopsy.
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Active Evaluation & Reports Status Card -->
+    <div class="card eval-status-card">
+        <div class="card-header">
+            <div class="card-header-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+            </div>
+            <div>
+                <h2 class="card-title">Test Evaluation & Reports Status</h2>
+                <p class="card-subtitle">Current status of generated evaluation reports and confusion matrix plots</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="status-summary-row">
+                <div class="status-indicator-box">
+                    <span class="status-label">Model Weights:</span>
+                    {% if model_status.is_loaded %}
+                        <span class="status-pill status-ready">Weights Loaded ({{ model_status.model_filename }})</span>
+                    {% else %}
+                        <span class="status-pill status-pending">Phase 1: Pre-training (Weights Pending)</span>
+                    {% endif %}
+                </div>
+                <div class="status-indicator-box">
+                    <span class="status-label">Generated Reports:</span>
+                    <span class="status-pill status-neutral">{{ reports|length }} artifacts in <code>reports/</code></span>
+                </div>
+            </div>
+
+            {% if reports %}
+            <div class="reports-table-wrapper">
+                <h4>Generated Evaluation Artifacts:</h4>
+                <table class="dataset-table">
+                    <thead>
+                        <tr>
+                            <th>File Name</th>
+                            <th>Type</th>
+                            <th>File Size</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for rep in reports %}
+                        <tr>
+                            <td><code>{{ rep.filename }}</code></td>
+                            <td>{{ rep.type }}</td>
+                            <td>{{ rep.size_kb }} KB</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="empty-reports-message">
+                <p>
+                    No evaluation reports have been generated yet. In Phase 2, running 
+                    <code>python evaluation.py</code> will evaluate the trained model on <code>dataset/test/</code>, 
+                    compute scikit-learn classification metrics, and automatically render the confusion matrix heatmap into the <code>reports/</code> folder.
+                </p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

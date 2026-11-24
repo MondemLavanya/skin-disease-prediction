@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Skin Disease Prediction Using Deep Learning{% endblock %}</title>
+    <meta name="description" content="B.Tech Minor Project-I: Skin Disease Prediction Using Deep Learning on Dermatoscopic Images">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Google Fonts for crisp typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Clinical Disclaimer Banner -->
+    <div class="clinical-disclaimer-banner" role="alert">
+        <div class="container disclaimer-content">
+            <span class="disclaimer-badge">Medical & Academic Notice</span>
+            <p>
+                <strong>Educational Decision-Support Prototype:</strong> 
+                This system is developed for a B.Tech Minor Project-I in CSE-AIML. It is intended strictly for academic demonstration and research exploration, <strong>never as a substitute for certified dermatological examination or histopathological biopsy</strong>.
+            </p>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="{{ url_for('index') }}" class="brand-logo" aria-label="Skin Disease Prediction Home">
+                <div class="logo-icon-wrapper">
+                    <!-- Clean Medical Cross / Shield SVG -->
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <line x1="12" y1="8" x2="12" y2="14"/>
+                        <line x1="9" y1="11" x2="15" y2="11"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">DermoAI Lab</span>
+                    <span class="brand-subtitle">Minor Project-I • CSE-AIML</span>
+                </div>
+            </a>
+
+            <nav class="main-nav" aria-label="Primary Navigation">
+                <ul class="nav-list">
+                    <li>
+                        <a href="{{ url_for('index') }}" class="nav-link {% if active_page == 'home' %}active{% endif %}">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            <span>Analyzer</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('dataset') }}" class="nav-link {% if active_page == 'dataset' %}active{% endif %}">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                            <span>Dataset</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('about') }}" class="nav-link {% if active_page == 'about' %}active{% endif %}">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                            <span>Methodology</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('evaluation') }}" class="nav-link {% if active_page == 'evaluation' %}active{% endif %}">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                            <span>Evaluation</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Block -->
+    <main class="page-body">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-left">
+                <h4>Skin Disease Prediction Using Deep Learning</h4>
+                <p>A B.Tech Minor Project-I exploring Convolutional Neural Networks, Transfer Learning, and Dermatoscopic Image Preprocessing.</p>
+                <div class="academic-badge-row">
+                    <span class="badge-pill">B.Tech CSE-AIML</span>
+                    <span class="badge-pill">HAM10000 Benchmark</span>
+                    <span class="badge-pill">Flask + TensorFlow</span>
+                </div>
+            </div>
+            <div class="footer-right">
+                <h5>Navigation Links</h5>
+                <ul class="footer-links">
+                    <li><a href="{{ url_for('index') }}">Lesion Analyzer</a></li>
+                    <li><a href="{{ url_for('dataset') }}">Dataset & Class Statistics</a></li>
+                    <li><a href="{{ url_for('about') }}">Methodology & Limitations</a></li>
+                    <li><a href="{{ url_for('evaluation') }}">Clinical Evaluation Metrics</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container bottom-content">
+                <p>&copy; 2026 Skin Disease Prediction Project. Strictly for educational & academic evaluation.</p>
+                <p>Designed with Python, Flask, HTML5, CSS3 & JavaScript.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

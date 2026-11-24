@@ -1,0 +1,12 @@
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.env
+*.log
+.ipynb_checkpoints/
+uploads/*
+!uploads/.gitkeep
+/skin_disease_model.h5
+.keras/
+/dir

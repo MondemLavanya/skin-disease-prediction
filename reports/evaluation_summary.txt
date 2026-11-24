@@ -1,0 +1,52 @@
+==============================================================================
+B.TECH MINOR PROJECT-I: MODEL EVALUATION SUMMARY REPORT
+Skin Disease Prediction Using Deep Learning (MobileNetV2)
+==============================================================================
+Evaluated At:        2026-11-24 21:47:54
+Model File:          model/skin_disease_model.h5
+Input Resolution:    (224, 224, 3) RGB
+Normalization:       [0.0, 1.0] with internal MobileNetV2 scaling layer
+Total Test Samples:  13 held-out dermoscopic images
+Overall Accuracy:    69.23% (9/13 correct)
+Macro Average F1:    0.7238
+Weighted Average F1: 0.7026
+
+------------------------------------------------------------------------------
+PER-CLASS PERFORMANCE BREAKDOWN
+------------------------------------------------------------------------------
+Code    | Diagnosis                        | Precision | Recall   | Spec     | F1     | Supp
+------------------------------------------------------------------------------
+akiec   | Actinic Keratoses and Intraepith | 1.0000    | 0.5000   | 1.0000   | 0.6667 | 2
+bcc     | Basal Cell Carcinoma             | 1.0000    | 0.5000   | 1.0000   | 0.6667 | 2
+bkl     | Benign Keratosis-like Lesions    | 0.3333    | 0.5000   | 0.8182   | 0.4000 | 2
+df      | Dermatofibroma                   | 1.0000    | 1.0000   | 1.0000   | 1.0000 | 1
+mel     | Melanoma                         | 1.0000    | 0.5000   | 1.0000   | 0.6667 | 2
+nv      | Melanocytic Nevi                 | 0.5000    | 1.0000   | 0.8182   | 0.6667 | 2
+vasc    | Vascular Lesions                 | 1.0000    | 1.0000   | 1.0000   | 1.0000 | 2
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+CONFUSION MATRIX (Rows: True, Columns: Predicted)
+------------------------------------------------------------------------------
+       akiec    bcc    bkl     df    mel     nv   vasc
+akiec:     1      0      1      0      0      0      0
+bcc  :     0      1      1      0      0      0      0
+bkl  :     0      0      1      0      0      1      0
+df   :     0      0      0      1      0      0      0
+mel  :     0      0      0      0      1      1      0
+nv   :     0      0      0      0      0      2      0
+vasc :     0      0      0      0      0      0      2
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+CLINICAL & STATISTICAL OBSERVATIONS
+------------------------------------------------------------------------------
+1. High sensitivity was achieved on benign nevi (nv, 100%), dermatofibroma (df, 100%),
+   and vascular lesions (vasc, 100%).
+2. For malignant/premalignant classes (mel, bcc, akiec), 50% sensitivity was observed,
+   with false negatives predominantly misclassified into common benign categories (nv, bkl).
+   This highlights the fundamental clinical challenge in dermoscopy: distinguishing
+   early-stage melanoma from dysplastic nevi.
+3. Dataset Size Limitation: Evaluated on 13 held-out test images from the authentic local subset.
+   Full statistical generalization requires evaluation across the entire 10,015 HAM10000 archive.
+==============================================================================

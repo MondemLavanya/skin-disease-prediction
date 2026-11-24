@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+
+{% block title %}Methodology & Limitations | Skin Disease Prediction{% endblock %}
+
+{% block content %}
+<div class="container main-content-wrapper">
+    <!-- Page Header -->
+    <section class="page-header-section">
+        <div class="hero-badge">
+            <span class="status-dot"></span>
+            <span>B.Tech Minor Project-I • CSE-AIML</span>
+        </div>
+        <h1 class="page-title">Project Methodology & Clinical Limitations</h1>
+        <p class="page-subtitle">
+            An in-depth explanation of the deep learning architecture, computer vision preprocessing pipeline, 
+            training strategy, and critical ethical and clinical limitations essential for Minor Project defense.
+        </p>
+    </section>
+
+    <!-- Methodology Overview Card -->
+    <div class="card">
+        <div class="card-header">
+            <div class="card-header-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                    <polyline points="2 17 12 22 22 17"/>
+                    <polyline points="2 12 12 17 22 12"/>
+                </svg>
+            </div>
+            <div>
+                <h2 class="card-title">End-to-End System Architecture</h2>
+                <p class="card-subtitle">From raw dermatoscopic image to clinical decision support</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <!-- Step by Step Workflow Cards -->
+            <div class="methodology-steps">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Image Ingestion & Verification</h3>
+                        <p>
+                            Uploaded files are validated using the Python Imaging Library (PIL). The module checks file headers, 
+                            verifies that pixel data is not truncated or corrupted, and converts grayscale, RGBA, or CMYK images 
+                            into a uniform 3-channel RGB color space.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Spatial Resizing & Normalization</h3>
+                        <p>
+                            Dermatoscopic images vary greatly in capture resolution (e.g., 600×450 px). Images are resized to a 
+                            standard <code>224 × 224</code> pixel tensor using high-fidelity <strong>Lanczos resampling</strong>. 
+                            Raw integer pixel intensities in <code>[0, 255]</code> are rescaled into float32 values in <code>[0.0, 1.0]</code> 
+                            to ensure numerical stability and prevent gradient explosion in deep neural layers.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Data Augmentation Pipeline</h3>
+                        <p>
+                            To combat overfitting on minority classes (e.g., Dermatofibroma with only 115 samples), 
+                            a TensorFlow Keras Sequential augmentation layer applies:
+                        </p>
+                        <ul>
+                            <li><strong>Random Horizontal & Vertical Flips:</strong> Dermatological lesions have radial/circular symmetry.</li>
+                            <li><strong>Random Rotations (±10%):</strong> Simulates varying camera angles during dermoscopy.</li>
+                            <li><strong>Random Zoom (±10%):</strong> Simulates lens magnification distance variance.</li>
+                            <li><strong>Contrast Variation (±10%):</strong> Robustness against varying clinical light sources.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>Deep Learning Backbone (Transfer Learning)</h3>
+                        <p>
+                            Rather than training a deep network from scratch on limited medical samples, the project utilizes 
+                            <strong>Transfer Learning</strong>. Architectures such as <strong>MobileNetV2</strong>, <strong>EfficientNetB0</strong>, 
+                            or <strong>ResNet50</strong> pre-trained on ImageNet provide rich hierarchical edge, texture, and pattern representations.
+                        </p>
+                        <p>
+                            The convolutional base is followed by Global Average Pooling, a Dropout regularization layer (rate = 0.3), 
+                            and a Dense classification head with 7 output units activated via <strong>Softmax</strong>:
+                        </p>
+                        <div class="formula-box">
+                            $$P(Y = i \mid \mathbf{x}) = \frac{e^{z_i}}{\sum_{j=1}^{7} e^{z_j}}$$
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <h3>Inference & Web Integration</h3>
+                        <p>
+                            A lightweight Flask REST API receives query images, invokes the preprocessed tensor through 
+                            the model loader, and returns structured JSON containing top predicted disease, confidence percentage, 
+                            and class probability distribution for client-side rendering.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clinical Limitations & Ethical Considerations Section -->
+    <div class="card limitations-card">
+        <div class="card-header">
+            <div class="card-header-icon icon-warning">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                    <line x1="12" y1="9" x2="12" y2="13"/>
+                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+            </div>
+            <div>
+                <h2 class="card-title">Clinical Limitations & Ethical Considerations</h2>
+                <p class="card-subtitle">Critical real-world medical considerations for viva examination</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="limitations-grid">
+                <!-- Limitation 1 -->
+                <div class="limitation-item">
+                    <h4>1. Skin Tone Representation Bias (Fitzpatrick Scale)</h4>
+                    <p>
+                        Benchmark datasets including HAM10000 were predominantly collected from clinics in Austria and Australia, 
+                        consisting primarily of fair-skinned individuals (Fitzpatrick skin types I–III). As a consequence, 
+                        deep learning models may exhibit degraded sensitivity or false classifications on darker skin types (IV–VI). 
+                        Diverse multi-ethnic dataset curation is essential before clinical translation.
+                    </p>
+                </div>
+
+                <!-- Limitation 2 -->
+                <div class="limitation-item">
+                    <h4>2. Dermatoscopy Artifact Sensitivity</h4>
+                    <p>
+                        Real-world clinical images often contain confounding artifacts such as hair follicles, air bubbles from 
+                        immersion oil, purple surgical ink markings, and physical ruler calibration marks. Convolutions can 
+                        inadvertently latch onto ruler markings as high-risk features if ruler marks were disproportionately present 
+                        near malignant lesions in the training data (Clever Hans effect).
+                    </p>
+                </div>
+
+                <!-- Limitation 3 -->
+                <div class="limitation-item">
+                    <h4>3. Asymmetry of Misclassification Costs</h4>
+                    <p>
+                        In computer vision benchmarks, all errors are typically weighted equally. In clinical oncology, however, 
+                        a <strong>False Negative</strong> (misclassifying Malignant Melanoma as a benign nevus) can lead to delayed 
+                        treatment and fatal metastasis. Conversely, a <strong>False Positive</strong> causes temporary patient anxiety 
+                        and a follow-up biopsy. AI models in dermatology must be calibrated for maximum sensitivity on malignant classes.
+                    </p>
+                </div>
+
+                <!-- Limitation 4 -->
+                <div class="limitation-item">
+                    <h4>4. Image Domain Shift (Dermatoscope vs. Smartphone Camera)</h4>
+                    <p>
+                        The HAM10000 dataset consists strictly of standardized <em>dermatoscopic</em> images taken with specialized epiluminescence 
+                        devices. Feeding consumer smartphone camera photos with inconsistent illumination, shadows, and perspective distortion 
+                        represents an out-of-distribution domain shift, where neural network predictions become unreliable.
+                    </p>
+                </div>
+
+                <!-- Limitation 5 -->
+                <div class="limitation-item">
+                    <h4>5. Biopsy as Definitive Ground Truth</h4>
+                    <p>
+                        Even certified human dermatologists with dermoscopy achieve clinical diagnostic accuracy of 75%–85%. 
+                        Histopathological examination under a microscope following an excisional biopsy remains the true gold standard 
+                        for confirming malignant neoplasms. AI serves strictly as an assistive second-opinion tool.
+                    </p>
+                </div>
+
+                <!-- Limitation 6 -->
+                <div class="limitation-item">
+                    <h4>6. Explainability & Clinician Trust (Black-Box Challenge)</h4>
+                    <p>
+                        Deep neural networks lack intrinsic clinical interpretability. Future phases should incorporate 
+                        <strong>Grad-CAM (Gradient-weighted Class Activation Mapping)</strong> to generate visual heatmaps showing 
+                        which anatomical regions of the lesion the convolutional kernels activated upon.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

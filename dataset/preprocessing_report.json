@@ -1,0 +1,13 @@
+{
+  "preprocessing_status": "Completed and Verified",
+  "input_resolution": "224x224",
+  "interpolation_filter": "Lanczos",
+  "color_channels": 3,
+  "normalization_scale": "[0.0, 1.0]",
+  "total_images_processed": 70,
+  "corrupted_or_missing_images": 0,
+  "mean_pixel_intensity_overall": 0.6394,
+  "zero_leakage_guarantee_enabled": true,
+  "leakage_status": "Verified: 0 lesion ID overlap between train, validation, and test splits",
+  "integrity_check": "100% of exported images verified valid RGB float32 arrays"
+}

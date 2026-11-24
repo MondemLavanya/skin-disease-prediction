@@ -1,0 +1,69 @@
+{
+  "project_title": "Skin Disease Prediction Using Deep Learning",
+  "project_type": "B.Tech CSE-AIML Minor Project-I",
+  "model_status": "trained",
+  "model_architecture": "MobileNetV2 (Transfer Learning)",
+  "target_input_shape": [
+    224,
+    224,
+    3
+  ],
+  "normalization": "[0.0, 1.0] with internal [-1.0, 1.0] MobileNetV2 scaling layer",
+  "expected_weights_files": [
+    "skin_disease_model.h5"
+  ],
+  "benchmark_dataset": {
+    "name": "HAM10000 (Human Against Machine with 10000 training images)",
+    "source": "ISIC Archive / Harvard Dataverse",
+    "total_images": 10015,
+    "num_classes": 7
+  },
+  "test_metrics": {
+    "accuracy": 0.6722,
+    "roc_auc": 0.9255
+  },
+  "classes": [
+    {
+      "code": "akiec",
+      "name": "Actinic Keratoses and Intraepithelial Carcinoma",
+      "common_name": "Solar Keratosis / Pre-cancerous lesion",
+      "type": "Pre-cancerous / Malignant potential"
+    },
+    {
+      "code": "bcc",
+      "name": "Basal Cell Carcinoma",
+      "common_name": "Basal Cell Skin Cancer",
+      "type": "Malignant"
+    },
+    {
+      "code": "bkl",
+      "name": "Benign Keratosis-like Lesions",
+      "common_name": "Seborrheic Keratosis / Solar Lentigo",
+      "type": "Benign"
+    },
+    {
+      "code": "df",
+      "name": "Dermatofibroma",
+      "common_name": "Benign fibrous histiocytoma",
+      "type": "Benign"
+    },
+    {
+      "code": "mel",
+      "name": "Melanoma",
+      "common_name": "Malignant Melanoma",
+      "type": "Malignant (High Risk)"
+    },
+    {
+      "code": "nv",
+      "name": "Melanocytic Nevi",
+      "common_name": "Common Mole",
+      "type": "Benign"
+    },
+    {
+      "code": "vasc",
+      "name": "Vascular Lesions",
+      "common_name": "Angioma / Pyogenic Granuloma",
+      "type": "Benign"
+    }
+  ]
+}

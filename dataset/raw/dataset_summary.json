@@ -1,0 +1,25 @@
+{
+  "dataset_name": "HAM10000 (Human Against Machine with 10000 training images)",
+  "source": "ISIC Archive API v2 (Official)",
+  "source_collection_id": 212,
+  "source_url": "https://api.isic-archive.com/api/v2/collections/212/",
+  "license": "Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)",
+  "citation": "Tschandl, P., Rosendahl, C. & Kittler, H. Sci Data 5, 180161 (2018). DOI: 10.1038/sdata.2018.161",
+  "intended_use": "Academic research and development in dermatological image analysis (B.Tech Minor Project-I)",
+  "subset_role": "Development testing subset for download integrity, metadata mapping, preprocessing, and UI inspection. Not used to claim model accuracy.",
+  "download_status": "Completed and Verified",
+  "total_images_downloaded": 70,
+  "corrupted_files_count": 0,
+  "storage_mb": 1.87,
+  "raw_storage_path": "C:\\Users\\lavan\\.gemini\\antigravity\\scratch\\skin-disease-prediction\\dataset\\raw\\images",
+  "per_class_counts": {
+    "akiec": 10,
+    "bcc": 10,
+    "bkl": 10,
+    "df": 10,
+    "mel": 10,
+    "nv": 10,
+    "vasc": 10
+  },
+  "full_dataset_storage_note": "The complete HAM10000 dataset consists of 10,015 images requiring ~2.8 GB compressed and ~5.4 GB uncompressed. To download the complete archive, run 'python download_dataset.py --full' or use isic-cli."
+}

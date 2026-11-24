@@ -1,0 +1,426 @@
+{% extends "base.html" %}
+
+{% block title %}Dataset - HAM10000 Benchmark | Skin Disease Prediction{% endblock %}
+
+{% block content %}
+<div class="container main-content-wrapper">
+    <!-- Page Header -->
+    <section class="page-header-section">
+        <div class="hero-badge">
+            <span class="status-dot"></span>
+            <span>Dermatoscopic Benchmark Dataset</span>
+        </div>
+        <h1 class="page-title">HAM10000 Dataset & Class Distribution</h1>
+        <p class="page-subtitle">
+            Detailed breakdown of the benchmark dermatological dataset, ground-truth diagnostic classes, 
+            class distribution statistics, train/validation/test split architecture, and live local filesystem audit.
+        </p>
+    </section>
+
+    <!-- Key Stats Counter Grid -->
+    <div class="stats-overview-grid">
+        <div class="stat-card">
+            <span class="stat-number">10,015</span>
+            <span class="stat-label">Total Dermatoscopic Images</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">7</span>
+            <span class="stat-label">Diagnostic Classes</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">> 50%</span>
+            <span class="stat-label">Histopathologically Confirmed (Biopsy)</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">70 / 15 / 15</span>
+            <span class="stat-label">Train / Val / Test Split Ratio</span>
+        </div>
+    </div>
+
+    <!-- Benchmark Source Information Card -->
+    <div class="card dataset-meta-card">
+        <div class="card-header">
+            <div class="card-header-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="2" y1="12" x2="22" y2="12"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1-4-10z"/>
+                </svg>
+            </div>
+            <div>
+                <h2 class="card-title">Dataset Source & Citation</h2>
+                <p class="card-subtitle">Official benchmark credentials and provenance</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="dataset-info-table">
+                <div class="info-row">
+                    <span class="info-key">Dataset Name:</span>
+                    <span class="info-value"><strong>HAM10000</strong> ("Human Against Machine with 10000 training images")</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-key">Primary Host:</span>
+                    <span class="info-value">International Skin Imaging Collaboration (ISIC) Archive & Harvard Dataverse</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-key">Authors:</span>
+                    <span class="info-value">Philipp Tschandl, Cliff Rosendahl, Harald Kittler (Medical University of Vienna)</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-key">Scientific Citation:</span>
+                    <span class="info-value">
+                        <em>Tschandl, P., Rosendahl, C. & Kittler, H. "The HAM10000 dataset, a large collection of multi-source dermatoscopic images of common pigmented skin lesions." Nature Scientific Data 5, 180161 (2018).</em>
+                        <br>
+                        <a href="https://doi.org/10.1038/sdata.2018.161" target="_blank" rel="noopener" class="doi-link">DOI: 10.1038/sdata.2018.161 ↗</a>
+                    </span>
+                </div>
+                <div class="info-row">
+                    <span class="info-key">Image Modality:</span>
+                    <span class="info-value">Dermatoscopy (High-resolution epiluminescence microscopy capturing sub-surface skin features)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Class Distribution Section -->
+    <div class="card dataset-distribution-card">
+        <div class="card-header">
+            <div class="card-header-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="20" x2="18" y2="10"/>
+                    <line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+            </div>
+            <div>
+                <h2 class="card-title">Class Distribution & Ground Truth Breakdown</h2>
+                <p class="card-subtitle">Exact image counts across all 7 dermatological diagnostic categories</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <p class="section-explanation">
+                The HAM10000 dataset exhibits significant natural class imbalance mirroring clinical reality, 
+                where benign moles (nevi) are far more common than rare lesions.
+            </p>
+
+            <div class="table-responsive">
+                <table class="dataset-table">
+                    <thead>
+                        <tr>
+                            <th>Class Code</th>
+                            <th>Medical Diagnosis Name</th>
+                            <th>Clinical Severity</th>
+                            <th>Image Count</th>
+                            <th>Percentage</th>
+                            <th>Relative Distribution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>nv</code></td>
+                            <td><strong>Melanocytic Nevi</strong> (Common Moles)</td>
+                            <td><span class="badge-pill badge-benign">Benign</span></td>
+                            <td><strong>6,705</strong></td>
+                            <td>66.95%</td>
+                            <td>
+                                <div class="dist-bar-wrapper">
+                                    <div class="dist-bar-fill" style="width: 67%;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>mel</code></td>
+                            <td><strong>Melanoma</strong> (High-risk skin cancer)</td>
+                            <td><span class="badge-pill badge-malignant-high-risk">Malignant (High Risk)</span></td>
+                            <td><strong>1,113</strong></td>
+                            <td>11.11%</td>
+                            <td>
+                                <div class="dist-bar-wrapper">
+                                    <div class="dist-bar-fill bar-malignant" style="width: 11.1%;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>bkl</code></td>
+                            <td><strong>Benign Keratosis-like Lesions</strong> (Solar lentigines / Seborrheic keratoses)</td>
+                            <td><span class="badge-pill badge-benign">Benign</span></td>
+                            <td><strong>1,099</strong></td>
+                            <td>10.97%</td>
+                            <td>
+                                <div class="dist-bar-wrapper">
+                                    <div class="dist-bar-fill" style="width: 11.0%;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>bcc</code></td>
+                            <td><strong>Basal Cell Carcinoma</strong> (Common non-melanoma skin cancer)</td>
+                            <td><span class="badge-pill badge-malignant">Malignant</span></td>
+                            <td><strong>514</strong></td>
+                            <td>5.13%</td>
+                            <td>
+                                <div class="dist-bar-wrapper">
+                                    <div class="dist-bar-fill bar-warning" style="width: 5.1%;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>akiec</code></td>
+                            <td><strong>Actinic Keratoses & Intraepithelial Carcinoma</strong> (Bowen's disease)</td>
+                            <td><span class="badge-pill badge-precancerous">Pre-cancerous</span></td>
+                            <td><strong>327</strong></td>
+                            <td>3.27%</td>
+                            <td>
+                                <div class="dist-bar-wrapper">
+                                    <div class="dist-bar-fill bar-warning" style="width: 3.3%;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>vasc</code></td>
+                            <td><strong>Vascular Lesions</strong> (Angiomas, pyogenic granulomas)</td>
+                            <td><span class="badge-pill badge-benign">Benign</span></td>
+                            <td><strong>142</strong></td>
+                            <td>1.42%</td>
+                            <td>
+                                <div class="dist-bar-wrapper">
+                                    <div class="dist-bar-fill" style="width: 1.4%;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>df</code></td>
+                            <td><strong>Dermatofibroma</strong> (Benign skin nodule)</td>
+                            <td><span class="badge-pill badge-benign">Benign</span></td>
+                            <td><strong>115</strong></td>
+                            <td>1.15%</td>
+                            <td>
+                                <div class="dist-bar-wrapper">
+                                    <div class="dist-bar-fill" style="width: 1.2%;"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="3">Total Dataset Samples</th>
+                            <th>10,015</th>
+                            <th>100.0%</th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <!-- Imbalance Handling Note -->
+            <div class="callout-card">
+                <h4>Machine Learning Implication of Class Imbalance:</h4>
+                <p>
+                    Because Melanocytic Nevi (<code>nv</code>) accounts for ~67% of samples, a standard model may easily 
+                    develop a majority-class bias. In our pipeline, we address this during training using:
+                </p>
+                <ul>
+                    <li><strong>Data Augmentation</strong> (flips, rotations, contrast adjustments) on minority classes.</li>
+                    <li><strong>Class-Weighted Loss Functions</strong> (penalizing misclassification of Melanoma more heavily).</li>
+                    <li><strong>Stratified Dataset Splitting</strong> to ensure proportional representation across splits.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Real Local Dataset & Split Manifest Card (Phase 2) -->
+    {% if dataset_summary and split_manifest %}
+    <div class="card local-dataset-manifest-card" style="border-left: 5px solid var(--primary); margin-bottom: 2rem;">
+        <div class="card-header">
+            <div class="card-header-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+            </div>
+            <div>
+                <h2 class="card-title">Authentic ISIC Dataset Subset & Zero-Leakage Split Manifest</h2>
+                <p class="card-subtitle">Real verified dermatoscopic images downloaded directly from the official ISIC Archive API v2</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <!-- Academic Usage Scope Notice -->
+            <div class="callout-card" style="background-color: #fffbeb; border-color: #fde68a; margin-top: 0; margin-bottom: 1.25rem;">
+                <h4 style="color: #92400e;">Development Subset Purpose & Academic Scope:</h4>
+                <p style="color: #78350f;">
+                    This <strong>{{ dataset_summary.total_images_downloaded }}-image development subset</strong> was collected from the official 
+                    ISIC Archive API (Collection #{{ dataset_summary.source_collection_id }}) solely to test authorized image downloading, 
+                    clinical metadata mapping, lesion-level splitting, Lanczos preprocessing, and web UI presentation. 
+                    <strong>It is strictly NOT used to claim model accuracy or clinical readiness.</strong>
+                </p>
+            </div>
+
+            <!-- Metadata Metrics Grid -->
+            <div class="diagnostic-grid" style="margin-bottom: 1.25rem;">
+                <div class="diag-item">
+                    <span class="diag-label">Authentic Images Downloaded:</span>
+                    <span class="diag-val" style="color: var(--primary);">{{ dataset_summary.total_images_downloaded }} images</span>
+                </div>
+                <div class="diag-item">
+                    <span class="diag-label">Corrupted / Missing Files:</span>
+                    <span class="diag-val text-success">{{ dataset_summary.corrupted_files_count }} (100% Valid PIL Decodable)</span>
+                </div>
+                <div class="diag-item">
+                    <span class="diag-label">Data Leakage Verification:</span>
+                    {% if split_manifest.zero_leakage_verified %}
+                    <span class="diag-val text-success">✓ 0 Lesion ID Overlap Verified</span>
+                    {% else %}
+                    <span class="diag-val text-danger">⚠️ Leakage Warning</span>
+                    {% endif %}
+                </div>
+                <div class="diag-item">
+                    <span class="diag-label">Copyright License:</span>
+                    <span class="diag-val" style="font-size: 0.75rem;">{{ dataset_summary.license }}</span>
+                </div>
+                <div class="diag-item">
+                    <span class="diag-label">Raw Untouched Storage:</span>
+                    <span class="diag-val" style="font-size: 0.725rem;"><code>dataset/raw/images/</code></span>
+                </div>
+                <div class="diag-item">
+                    <span class="diag-label">Preprocessed Resolution:</span>
+                    <span class="diag-val">224 × 224 px (Lanczos RGB)</span>
+                </div>
+            </div>
+
+            <!-- Leakage Status Banner -->
+            <div class="result-status-banner {% if split_manifest.zero_leakage_verified %}banner-verified{% else %}banner-warning{% endif %}" style="margin-bottom: 1.25rem;">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+                <span><strong>Split Status:</strong> {{ split_manifest.leakage_verification_status }}</span>
+            </div>
+
+            <!-- Real Local Class Counts Table -->
+            <h4>Real Local Subset Distribution Across Splits:</h4>
+            <div class="table-responsive">
+                <table class="dataset-table">
+                    <thead>
+                        <tr>
+                            <th>Class Code</th>
+                            <th>Diagnosis Name</th>
+                            <th>Total Local Images</th>
+                            <th>Train Split (70%)</th>
+                            <th>Val Split (15%)</th>
+                            <th>Test Split (15%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cls in classes %}
+                        <tr>
+                            <td><code>{{ cls.code }}</code></td>
+                            <td>{{ cls.name }}</td>
+                            <td><strong>{{ dataset_summary.per_class_counts[cls.code] or 0 }}</strong></td>
+                            <td>{{ split_manifest.split_breakdown_by_class.train[cls.code] or 0 }}</td>
+                            <td>{{ split_manifest.split_breakdown_by_class.validation[cls.code] or 0 }}</td>
+                            <td>{{ split_manifest.split_breakdown_by_class.test[cls.code] or 0 }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="2">Total Subset Images</th>
+                            <th>{{ split_manifest.total_images }}</th>
+                            <th>{{ split_manifest.split_counts.train }}</th>
+                            <th>{{ split_manifest.split_counts.validation }}</th>
+                            <th>{{ split_manifest.split_counts.test }}</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Live Local Filesystem Audit Card -->
+    <div class="card local-dataset-audit-card">
+        <div class="card-header">
+            <div class="card-header-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                </svg>
+            </div>
+            <div>
+                <h2 class="card-title">Live Local Filesystem Audit</h2>
+                <p class="card-subtitle">Real-time inspection of the project's <code>dataset/</code> directory on this machine</p>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="splits-status-grid">
+                <!-- Train Split Status -->
+                <div class="split-status-box">
+                    <div class="split-top">
+                        <h4>Training Set (<code>dataset/train/</code>)</h4>
+                        <span class="split-count-badge">{{ train_report.total_images }} images</span>
+                    </div>
+                    <p class="split-desc">Recommended: 70% (~7,010 images) with data augmentation.</p>
+                    <div class="split-classes-list">
+                        <strong>Detected Classes:</strong>
+                        {% if structure.classes.train %}
+                            <span class="detected-tags">{{ structure.classes.train|join(', ') }}</span>
+                        {% else %}
+                            <span class="text-muted">No class subfolders populated yet. (Ready for Phase 2 data placement)</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Validation Split Status -->
+                <div class="split-status-box">
+                    <div class="split-top">
+                        <h4>Validation Set (<code>dataset/validation/</code>)</h4>
+                        <span class="split-count-badge">{{ val_report.total_images }} images</span>
+                    </div>
+                    <p class="split-desc">Recommended: 15% (~1,502 images) for checkpointing & early stopping.</p>
+                    <div class="split-classes-list">
+                        <strong>Detected Classes:</strong>
+                        {% if structure.classes.validation %}
+                            <span class="detected-tags">{{ structure.classes.validation|join(', ') }}</span>
+                        {% else %}
+                            <span class="text-muted">No class subfolders populated yet.</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Test Split Status -->
+                <div class="split-status-box">
+                    <div class="split-top">
+                        <h4>Test Set (<code>dataset/test/</code>)</h4>
+                        <span class="split-count-badge">{{ test_report.total_images }} images</span>
+                    </div>
+                    <p class="split-desc">Recommended: 15% (~1,503 images) for final generalization testing.</p>
+                    <div class="split-classes-list">
+                        <strong>Detected Classes:</strong>
+                        {% if structure.classes.test %}
+                            <span class="detected-tags">{{ structure.classes.test|join(', ') }}</span>
+                        {% else %}
+                            <span class="text-muted">No class subfolders populated yet.</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="instructions-box">
+                <h4>How to Organize Dataset Folders for Training:</h4>
+                <p>When downloading the HAM10000 dataset, organize your image files into class-named folders under each split as follows:</p>
+                <pre class="code-tree"><code>dataset/
+├── train/
+│   ├── akiec/   (images...)
+│   ├── bcc/     (images...)
+│   ├── bkl/     (images...)
+│   ├── df/      (images...)
+│   ├── mel/     (images...)
+│   ├── nv/      (images...)
+│   └── vasc/    (images...)
+├── validation/
+│   └── (same 7 class folders...)
+└── test/
+    └── (same 7 class folders...)</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

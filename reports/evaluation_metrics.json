@@ -1,0 +1,335 @@
+{
+  "evaluation_timestamp": "2026-11-24 21:47:54",
+  "project_title": "Skin Disease Prediction Using Deep Learning",
+  "project_type": "B.Tech Minor Project-I",
+  "model_architecture": "MobileNetV2 (Transfer Learning)",
+  "model_file": "skin_disease_model.h5",
+  "total_test_images": 13,
+  "overall_accuracy": 0.6923,
+  "macro_avg": {
+    "precision": 0.8333,
+    "recall": 0.7143,
+    "f1_score": 0.7238,
+    "support": 13
+  },
+  "weighted_avg": {
+    "precision": 0.8205,
+    "recall": 0.6923,
+    "f1_score": 0.7026,
+    "support": 13
+  },
+  "classes": [
+    "akiec",
+    "bcc",
+    "bkl",
+    "df",
+    "mel",
+    "nv",
+    "vasc"
+  ],
+  "per_class": {
+    "akiec": {
+      "name": "Actinic Keratoses and Intraepithelial Carcinoma",
+      "common_name": "Solar Keratosis / Pre-cancerous lesion",
+      "type": "Pre-cancerous / Malignant potential",
+      "precision": 1.0,
+      "recall": 0.5,
+      "sensitivity": 0.5,
+      "specificity": 1.0,
+      "f1_score": 0.6667,
+      "support": 2,
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 1,
+      "true_negatives": 11
+    },
+    "bcc": {
+      "name": "Basal Cell Carcinoma",
+      "common_name": "Basal Cell Skin Cancer",
+      "type": "Malignant",
+      "precision": 1.0,
+      "recall": 0.5,
+      "sensitivity": 0.5,
+      "specificity": 1.0,
+      "f1_score": 0.6667,
+      "support": 2,
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 1,
+      "true_negatives": 11
+    },
+    "bkl": {
+      "name": "Benign Keratosis-like Lesions",
+      "common_name": "Seborrheic Keratosis / Solar Lentigo",
+      "type": "Benign",
+      "precision": 0.3333,
+      "recall": 0.5,
+      "sensitivity": 0.5,
+      "specificity": 0.8182,
+      "f1_score": 0.4,
+      "support": 2,
+      "true_positives": 1,
+      "false_positives": 2,
+      "false_negatives": 1,
+      "true_negatives": 9
+    },
+    "df": {
+      "name": "Dermatofibroma",
+      "common_name": "Benign fibrous histiocytoma",
+      "type": "Benign",
+      "precision": 1.0,
+      "recall": 1.0,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "f1_score": 1.0,
+      "support": 1,
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "true_negatives": 12
+    },
+    "mel": {
+      "name": "Melanoma",
+      "common_name": "Malignant Melanoma",
+      "type": "Malignant (High Risk)",
+      "precision": 1.0,
+      "recall": 0.5,
+      "sensitivity": 0.5,
+      "specificity": 1.0,
+      "f1_score": 0.6667,
+      "support": 2,
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 1,
+      "true_negatives": 11
+    },
+    "nv": {
+      "name": "Melanocytic Nevi",
+      "common_name": "Common Mole",
+      "type": "Benign",
+      "precision": 0.5,
+      "recall": 1.0,
+      "sensitivity": 1.0,
+      "specificity": 0.8182,
+      "f1_score": 0.6667,
+      "support": 2,
+      "true_positives": 2,
+      "false_positives": 2,
+      "false_negatives": 0,
+      "true_negatives": 9
+    },
+    "vasc": {
+      "name": "Vascular Lesions",
+      "common_name": "Angioma / Pyogenic Granuloma",
+      "type": "Benign",
+      "precision": 1.0,
+      "recall": 1.0,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "f1_score": 1.0,
+      "support": 2,
+      "true_positives": 2,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "true_negatives": 11
+    }
+  },
+  "confusion_matrix": [
+    [
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      2,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      2
+    ]
+  ],
+  "sample_predictions": [
+    {
+      "filename": "ISIC_0024329.jpg",
+      "ground_truth_code": "akiec",
+      "ground_truth_name": "Actinic Keratoses and Intraepithelial Carcinoma",
+      "predicted_code": "bkl",
+      "predicted_name": "Benign Keratosis-like Lesions",
+      "confidence": 0.4141,
+      "confidence_pct": 41.41,
+      "is_correct": false
+    },
+    {
+      "filename": "ISIC_0024372.jpg",
+      "ground_truth_code": "akiec",
+      "ground_truth_name": "Actinic Keratoses and Intraepithelial Carcinoma",
+      "predicted_code": "akiec",
+      "predicted_name": "Actinic Keratoses and Intraepithelial Carcinoma",
+      "confidence": 0.5888,
+      "confidence_pct": 58.88,
+      "is_correct": true
+    },
+    {
+      "filename": "ISIC_0024431.jpg",
+      "ground_truth_code": "bcc",
+      "ground_truth_name": "Basal Cell Carcinoma",
+      "predicted_code": "bkl",
+      "predicted_name": "Benign Keratosis-like Lesions",
+      "confidence": 0.7874,
+      "confidence_pct": 78.74,
+      "is_correct": false
+    },
+    {
+      "filename": "ISIC_0024443.jpg",
+      "ground_truth_code": "bcc",
+      "ground_truth_name": "Basal Cell Carcinoma",
+      "predicted_code": "bcc",
+      "predicted_name": "Basal Cell Carcinoma",
+      "confidence": 0.778,
+      "confidence_pct": 77.8,
+      "is_correct": true
+    },
+    {
+      "filename": "ISIC_0024337.jpg",
+      "ground_truth_code": "bkl",
+      "ground_truth_name": "Benign Keratosis-like Lesions",
+      "predicted_code": "nv",
+      "predicted_name": "Melanocytic Nevi",
+      "confidence": 0.8451,
+      "confidence_pct": 84.51,
+      "is_correct": false
+    },
+    {
+      "filename": "ISIC_0024382.jpg",
+      "ground_truth_code": "bkl",
+      "ground_truth_name": "Benign Keratosis-like Lesions",
+      "predicted_code": "bkl",
+      "predicted_name": "Benign Keratosis-like Lesions",
+      "confidence": 0.8625,
+      "confidence_pct": 86.25,
+      "is_correct": true
+    },
+    {
+      "filename": "ISIC_0024994.jpg",
+      "ground_truth_code": "df",
+      "ground_truth_name": "Dermatofibroma",
+      "predicted_code": "df",
+      "predicted_name": "Dermatofibroma",
+      "confidence": 0.9929,
+      "confidence_pct": 99.29,
+      "is_correct": true
+    },
+    {
+      "filename": "ISIC_0024313.jpg",
+      "ground_truth_code": "mel",
+      "ground_truth_name": "Melanoma",
+      "predicted_code": "nv",
+      "predicted_name": "Melanocytic Nevi",
+      "confidence": 0.7149,
+      "confidence_pct": 71.49,
+      "is_correct": false
+    },
+    {
+      "filename": "ISIC_0024367.jpg",
+      "ground_truth_code": "mel",
+      "ground_truth_name": "Melanoma",
+      "predicted_code": "mel",
+      "predicted_name": "Melanoma",
+      "confidence": 0.3026,
+      "confidence_pct": 30.26,
+      "is_correct": true
+    },
+    {
+      "filename": "ISIC_0024307.jpg",
+      "ground_truth_code": "nv",
+      "ground_truth_name": "Melanocytic Nevi",
+      "predicted_code": "nv",
+      "predicted_name": "Melanocytic Nevi",
+      "confidence": 0.9202,
+      "confidence_pct": 92.02,
+      "is_correct": true
+    },
+    {
+      "filename": "ISIC_0024319.jpg",
+      "ground_truth_code": "nv",
+      "ground_truth_name": "Melanocytic Nevi",
+      "predicted_code": "nv",
+      "predicted_name": "Melanocytic Nevi",
+      "confidence": 0.8373,
+      "confidence_pct": 83.73,
+      "is_correct": true
+    },
+    {
+      "filename": "ISIC_0024370.jpg",
+      "ground_truth_code": "vasc",
+      "ground_truth_name": "Vascular Lesions",
+      "predicted_code": "vasc",
+      "predicted_name": "Vascular Lesions",
+      "confidence": 0.9993,
+      "confidence_pct": 99.93,
+      "is_correct": true
+    },
+    {
+      "filename": "ISIC_0024375.jpg",
+      "ground_truth_code": "vasc",
+      "ground_truth_name": "Vascular Lesions",
+      "predicted_code": "vasc",
+      "predicted_name": "Vascular Lesions",
+      "confidence": 0.9579,
+      "confidence_pct": 95.79,
+      "is_correct": true
+    }
+  ],
+  "academic_disclaimer": "Academic Research Prototype: This model is developed strictly for academic evaluation in B.Tech Minor Project-I. It is NOT a certified medical device and must never replace professional clinical histopathology or biopsy."
+}

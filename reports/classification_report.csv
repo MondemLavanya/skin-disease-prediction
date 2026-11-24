@@ -1,0 +1,12 @@
+Class_Code,Class_Name,Severity_Type,Precision,Recall_Sensitivity,Specificity,F1_Score,Support
+akiec,Actinic Keratoses and Intraepithelial Carcinoma,Pre-cancerous / Malignant potential,1.0000,0.5000,1.0000,0.6667,2
+bcc,Basal Cell Carcinoma,Malignant,1.0000,0.5000,1.0000,0.6667,2
+bkl,Benign Keratosis-like Lesions,Benign,0.3333,0.5000,0.8182,0.4000,2
+df,Dermatofibroma,Benign,1.0000,1.0000,1.0000,1.0000,1
+mel,Melanoma,Malignant (High Risk),1.0000,0.5000,1.0000,0.6667,2
+nv,Melanocytic Nevi,Benign,0.5000,1.0000,0.8182,0.6667,2
+vasc,Vascular Lesions,Benign,1.0000,1.0000,1.0000,1.0000,2
+
+Overall Accuracy,,,,,,0.6923,13
+Macro Average,,,0.8333,0.7143,,0.7238,13
+Weighted Average,,,0.8205,0.6923,,0.7026,13

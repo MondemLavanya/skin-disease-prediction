@@ -1,0 +1,506 @@
+{
+  "dataset_name": "HAM10000 Development Subset",
+  "total_images": 70,
+  "split_counts": {
+    "train": 44,
+    "validation": 13,
+    "test": 13
+  },
+  "zero_leakage_verified": true,
+  "leakage_verification_status": "Verified: 0 lesion ID overlap between train, validation, and test splits",
+  "overlap_details": {
+    "overlap_train_val": [],
+    "overlap_train_test": [],
+    "overlap_val_test": [],
+    "is_leakage_free": true
+  },
+  "limitations_noted": [],
+  "lesion_statistics": {
+    "akiec": {
+      "total_images": 10,
+      "unique_lesions": 10,
+      "multi_image_lesions": 0
+    },
+    "bcc": {
+      "total_images": 10,
+      "unique_lesions": 10,
+      "multi_image_lesions": 0
+    },
+    "bkl": {
+      "total_images": 10,
+      "unique_lesions": 10,
+      "multi_image_lesions": 0
+    },
+    "df": {
+      "total_images": 10,
+      "unique_lesions": 9,
+      "multi_image_lesions": 1
+    },
+    "mel": {
+      "total_images": 10,
+      "unique_lesions": 10,
+      "multi_image_lesions": 0
+    },
+    "nv": {
+      "total_images": 10,
+      "unique_lesions": 10,
+      "multi_image_lesions": 0
+    },
+    "vasc": {
+      "total_images": 10,
+      "unique_lesions": 10,
+      "multi_image_lesions": 0
+    }
+  },
+  "split_breakdown_by_class": {
+    "train": {
+      "akiec": 6,
+      "bcc": 6,
+      "bkl": 6,
+      "df": 8,
+      "mel": 6,
+      "nv": 6,
+      "vasc": 6
+    },
+    "validation": {
+      "akiec": 2,
+      "bcc": 2,
+      "bkl": 2,
+      "df": 1,
+      "mel": 2,
+      "nv": 2,
+      "vasc": 2
+    },
+    "test": {
+      "akiec": 2,
+      "bcc": 2,
+      "bkl": 2,
+      "df": 1,
+      "mel": 2,
+      "nv": 2,
+      "vasc": 2
+    }
+  },
+  "images": {
+    "ISIC_0024511": {
+      "class": "akiec",
+      "split": "train",
+      "lesion_id": "IL_7436821",
+      "path": "dataset\\train\\akiec\\ISIC_0024511.jpg"
+    },
+    "ISIC_0024450": {
+      "class": "akiec",
+      "split": "train",
+      "lesion_id": "IL_5904233",
+      "path": "dataset\\train\\akiec\\ISIC_0024450.jpg"
+    },
+    "ISIC_0024418": {
+      "class": "akiec",
+      "split": "train",
+      "lesion_id": "IL_2191346",
+      "path": "dataset\\train\\akiec\\ISIC_0024418.jpg"
+    },
+    "ISIC_0024517": {
+      "class": "akiec",
+      "split": "train",
+      "lesion_id": "IL_4120644",
+      "path": "dataset\\train\\akiec\\ISIC_0024517.jpg"
+    },
+    "ISIC_0024468": {
+      "class": "akiec",
+      "split": "train",
+      "lesion_id": "IL_6302381",
+      "path": "dataset\\train\\akiec\\ISIC_0024468.jpg"
+    },
+    "ISIC_0024470": {
+      "class": "akiec",
+      "split": "train",
+      "lesion_id": "IL_8119929",
+      "path": "dataset\\train\\akiec\\ISIC_0024470.jpg"
+    },
+    "ISIC_0024360": {
+      "class": "bcc",
+      "split": "train",
+      "lesion_id": "IL_5698688",
+      "path": "dataset\\train\\bcc\\ISIC_0024360.jpg"
+    },
+    "ISIC_0024411": {
+      "class": "bcc",
+      "split": "train",
+      "lesion_id": "IL_3065371",
+      "path": "dataset\\train\\bcc\\ISIC_0024411.jpg"
+    },
+    "ISIC_0024345": {
+      "class": "bcc",
+      "split": "train",
+      "lesion_id": "IL_9200198",
+      "path": "dataset\\train\\bcc\\ISIC_0024345.jpg"
+    },
+    "ISIC_0024403": {
+      "class": "bcc",
+      "split": "train",
+      "lesion_id": "IL_6995678",
+      "path": "dataset\\train\\bcc\\ISIC_0024403.jpg"
+    },
+    "ISIC_0024332": {
+      "class": "bcc",
+      "split": "train",
+      "lesion_id": "IL_5020504",
+      "path": "dataset\\train\\bcc\\ISIC_0024332.jpg"
+    },
+    "ISIC_0024436": {
+      "class": "bcc",
+      "split": "train",
+      "lesion_id": "IL_6251824",
+      "path": "dataset\\train\\bcc\\ISIC_0024436.jpg"
+    },
+    "ISIC_0024381": {
+      "class": "bkl",
+      "split": "train",
+      "lesion_id": "IL_9640595",
+      "path": "dataset\\train\\bkl\\ISIC_0024381.jpg"
+    },
+    "ISIC_0024358": {
+      "class": "bkl",
+      "split": "train",
+      "lesion_id": "IL_4380450",
+      "path": "dataset\\train\\bkl\\ISIC_0024358.jpg"
+    },
+    "ISIC_0024312": {
+      "class": "bkl",
+      "split": "train",
+      "lesion_id": "IL_3471258",
+      "path": "dataset\\train\\bkl\\ISIC_0024312.jpg"
+    },
+    "ISIC_0024336": {
+      "class": "bkl",
+      "split": "train",
+      "lesion_id": "IL_2788572",
+      "path": "dataset\\train\\bkl\\ISIC_0024336.jpg"
+    },
+    "ISIC_0024338": {
+      "class": "bkl",
+      "split": "train",
+      "lesion_id": "IL_7148773",
+      "path": "dataset\\train\\bkl\\ISIC_0024338.jpg"
+    },
+    "ISIC_0024383": {
+      "class": "bkl",
+      "split": "train",
+      "lesion_id": "IL_5129631",
+      "path": "dataset\\train\\bkl\\ISIC_0024383.jpg"
+    },
+    "ISIC_0024845": {
+      "class": "df",
+      "split": "train",
+      "lesion_id": "IL_7005800",
+      "path": "dataset\\train\\df\\ISIC_0024845.jpg"
+    },
+    "ISIC_0024553": {
+      "class": "df",
+      "split": "train",
+      "lesion_id": "IL_2965524",
+      "path": "dataset\\train\\df\\ISIC_0024553.jpg"
+    },
+    "ISIC_0024318": {
+      "class": "df",
+      "split": "train",
+      "lesion_id": "IL_9624462",
+      "path": "dataset\\train\\df\\ISIC_0024318.jpg"
+    },
+    "ISIC_0024396": {
+      "class": "df",
+      "split": "train",
+      "lesion_id": "IL_9624462",
+      "path": "dataset\\train\\df\\ISIC_0024396.jpg"
+    },
+    "ISIC_0025223": {
+      "class": "df",
+      "split": "train",
+      "lesion_id": "IL_3309402",
+      "path": "dataset\\train\\df\\ISIC_0025223.jpg"
+    },
+    "ISIC_0025154": {
+      "class": "df",
+      "split": "train",
+      "lesion_id": "IL_5939522",
+      "path": "dataset\\train\\df\\ISIC_0025154.jpg"
+    },
+    "ISIC_0024330": {
+      "class": "df",
+      "split": "train",
+      "lesion_id": "IL_0184125",
+      "path": "dataset\\train\\df\\ISIC_0024330.jpg"
+    },
+    "ISIC_0024386": {
+      "class": "df",
+      "split": "train",
+      "lesion_id": "IL_2835543",
+      "path": "dataset\\train\\df\\ISIC_0024386.jpg"
+    },
+    "ISIC_0024323": {
+      "class": "mel",
+      "split": "train",
+      "lesion_id": "IL_3894917",
+      "path": "dataset\\train\\mel\\ISIC_0024323.jpg"
+    },
+    "ISIC_0024410": {
+      "class": "mel",
+      "split": "train",
+      "lesion_id": "IL_0158845",
+      "path": "dataset\\train\\mel\\ISIC_0024410.jpg"
+    },
+    "ISIC_0024310": {
+      "class": "mel",
+      "split": "train",
+      "lesion_id": "IL_8194852",
+      "path": "dataset\\train\\mel\\ISIC_0024310.jpg"
+    },
+    "ISIC_0024400": {
+      "class": "mel",
+      "split": "train",
+      "lesion_id": "IL_0029019",
+      "path": "dataset\\train\\mel\\ISIC_0024400.jpg"
+    },
+    "ISIC_0024333": {
+      "class": "mel",
+      "split": "train",
+      "lesion_id": "IL_3589188",
+      "path": "dataset\\train\\mel\\ISIC_0024333.jpg"
+    },
+    "ISIC_0024315": {
+      "class": "mel",
+      "split": "train",
+      "lesion_id": "IL_9534602",
+      "path": "dataset\\train\\mel\\ISIC_0024315.jpg"
+    },
+    "ISIC_0024320": {
+      "class": "nv",
+      "split": "train",
+      "lesion_id": "IL_5667392",
+      "path": "dataset\\train\\nv\\ISIC_0024320.jpg"
+    },
+    "ISIC_0024317": {
+      "class": "nv",
+      "split": "train",
+      "lesion_id": "IL_8283789",
+      "path": "dataset\\train\\nv\\ISIC_0024317.jpg"
+    },
+    "ISIC_0024309": {
+      "class": "nv",
+      "split": "train",
+      "lesion_id": "IL_0959663",
+      "path": "dataset\\train\\nv\\ISIC_0024309.jpg"
+    },
+    "ISIC_0024314": {
+      "class": "nv",
+      "split": "train",
+      "lesion_id": "IL_4137430",
+      "path": "dataset\\train\\nv\\ISIC_0024314.jpg"
+    },
+    "ISIC_0024308": {
+      "class": "nv",
+      "split": "train",
+      "lesion_id": "IL_3692653",
+      "path": "dataset\\train\\nv\\ISIC_0024308.jpg"
+    },
+    "ISIC_0024311": {
+      "class": "nv",
+      "split": "train",
+      "lesion_id": "IL_9035157",
+      "path": "dataset\\train\\nv\\ISIC_0024311.jpg"
+    },
+    "ISIC_0024669": {
+      "class": "vasc",
+      "split": "train",
+      "lesion_id": "IL_9783995",
+      "path": "dataset\\train\\vasc\\ISIC_0024669.jpg"
+    },
+    "ISIC_0024747": {
+      "class": "vasc",
+      "split": "train",
+      "lesion_id": "IL_5080275",
+      "path": "dataset\\train\\vasc\\ISIC_0024747.jpg"
+    },
+    "ISIC_0024662": {
+      "class": "vasc",
+      "split": "train",
+      "lesion_id": "IL_3553797",
+      "path": "dataset\\train\\vasc\\ISIC_0024662.jpg"
+    },
+    "ISIC_0024904": {
+      "class": "vasc",
+      "split": "train",
+      "lesion_id": "IL_3252153",
+      "path": "dataset\\train\\vasc\\ISIC_0024904.jpg"
+    },
+    "ISIC_0024867": {
+      "class": "vasc",
+      "split": "train",
+      "lesion_id": "IL_5385555",
+      "path": "dataset\\train\\vasc\\ISIC_0024867.jpg"
+    },
+    "ISIC_0024402": {
+      "class": "vasc",
+      "split": "train",
+      "lesion_id": "IL_5871784",
+      "path": "dataset\\train\\vasc\\ISIC_0024402.jpg"
+    },
+    "ISIC_0024522": {
+      "class": "akiec",
+      "split": "validation",
+      "lesion_id": "IL_6894920",
+      "path": "dataset\\validation\\akiec\\ISIC_0024522.jpg"
+    },
+    "ISIC_0024463": {
+      "class": "akiec",
+      "split": "validation",
+      "lesion_id": "IL_2979493",
+      "path": "dataset\\validation\\akiec\\ISIC_0024463.jpg"
+    },
+    "ISIC_0024432": {
+      "class": "bcc",
+      "split": "validation",
+      "lesion_id": "IL_9546765",
+      "path": "dataset\\validation\\bcc\\ISIC_0024432.jpg"
+    },
+    "ISIC_0024331": {
+      "class": "bcc",
+      "split": "validation",
+      "lesion_id": "IL_2333054",
+      "path": "dataset\\validation\\bcc\\ISIC_0024331.jpg"
+    },
+    "ISIC_0024324": {
+      "class": "bkl",
+      "split": "validation",
+      "lesion_id": "IL_5985765",
+      "path": "dataset\\validation\\bkl\\ISIC_0024324.jpg"
+    },
+    "ISIC_0024371": {
+      "class": "bkl",
+      "split": "validation",
+      "lesion_id": "IL_5610122",
+      "path": "dataset\\validation\\bkl\\ISIC_0024371.jpg"
+    },
+    "ISIC_0024973": {
+      "class": "df",
+      "split": "validation",
+      "lesion_id": "IL_7886196",
+      "path": "dataset\\validation\\df\\ISIC_0024973.jpg"
+    },
+    "ISIC_0024449": {
+      "class": "mel",
+      "split": "validation",
+      "lesion_id": "IL_2075245",
+      "path": "dataset\\validation\\mel\\ISIC_0024449.jpg"
+    },
+    "ISIC_0024351": {
+      "class": "mel",
+      "split": "validation",
+      "lesion_id": "IL_5307158",
+      "path": "dataset\\validation\\mel\\ISIC_0024351.jpg"
+    },
+    "ISIC_0024306": {
+      "class": "nv",
+      "split": "validation",
+      "lesion_id": "IL_7252831",
+      "path": "dataset\\validation\\nv\\ISIC_0024306.jpg"
+    },
+    "ISIC_0024316": {
+      "class": "nv",
+      "split": "validation",
+      "lesion_id": "IL_1831914",
+      "path": "dataset\\validation\\nv\\ISIC_0024316.jpg"
+    },
+    "ISIC_0024706": {
+      "class": "vasc",
+      "split": "validation",
+      "lesion_id": "IL_8973812",
+      "path": "dataset\\validation\\vasc\\ISIC_0024706.jpg"
+    },
+    "ISIC_0024475": {
+      "class": "vasc",
+      "split": "validation",
+      "lesion_id": "IL_3671698",
+      "path": "dataset\\validation\\vasc\\ISIC_0024475.jpg"
+    },
+    "ISIC_0024329": {
+      "class": "akiec",
+      "split": "test",
+      "lesion_id": "IL_6043522",
+      "path": "dataset\\test\\akiec\\ISIC_0024329.jpg"
+    },
+    "ISIC_0024372": {
+      "class": "akiec",
+      "split": "test",
+      "lesion_id": "IL_1602255",
+      "path": "dataset\\test\\akiec\\ISIC_0024372.jpg"
+    },
+    "ISIC_0024431": {
+      "class": "bcc",
+      "split": "test",
+      "lesion_id": "IL_9086281",
+      "path": "dataset\\test\\bcc\\ISIC_0024431.jpg"
+    },
+    "ISIC_0024443": {
+      "class": "bcc",
+      "split": "test",
+      "lesion_id": "IL_4580158",
+      "path": "dataset\\test\\bcc\\ISIC_0024443.jpg"
+    },
+    "ISIC_0024337": {
+      "class": "bkl",
+      "split": "test",
+      "lesion_id": "IL_7860329",
+      "path": "dataset\\test\\bkl\\ISIC_0024337.jpg"
+    },
+    "ISIC_0024382": {
+      "class": "bkl",
+      "split": "test",
+      "lesion_id": "IL_2353675",
+      "path": "dataset\\test\\bkl\\ISIC_0024382.jpg"
+    },
+    "ISIC_0024994": {
+      "class": "df",
+      "split": "test",
+      "lesion_id": "IL_9470586",
+      "path": "dataset\\test\\df\\ISIC_0024994.jpg"
+    },
+    "ISIC_0024313": {
+      "class": "mel",
+      "split": "test",
+      "lesion_id": "IL_9808449",
+      "path": "dataset\\test\\mel\\ISIC_0024313.jpg"
+    },
+    "ISIC_0024367": {
+      "class": "mel",
+      "split": "test",
+      "lesion_id": "IL_5673593",
+      "path": "dataset\\test\\mel\\ISIC_0024367.jpg"
+    },
+    "ISIC_0024307": {
+      "class": "nv",
+      "split": "test",
+      "lesion_id": "IL_6125741",
+      "path": "dataset\\test\\nv\\ISIC_0024307.jpg"
+    },
+    "ISIC_0024319": {
+      "class": "nv",
+      "split": "test",
+      "lesion_id": "IL_7838614",
+      "path": "dataset\\test\\nv\\ISIC_0024319.jpg"
+    },
+    "ISIC_0024370": {
+      "class": "vasc",
+      "split": "test",
+      "lesion_id": "IL_0570567",
+      "path": "dataset\\test\\vasc\\ISIC_0024370.jpg"
+    },
+    "ISIC_0024375": {
+      "class": "vasc",
+      "split": "test",
+      "lesion_id": "IL_3422880",
+      "path": "dataset\\test\\vasc\\ISIC_0024375.jpg"
+    }
+  }
+}
